@@ -6,10 +6,10 @@ from sklearn.tree import export_graphviz
 import os
 import pydotplus
 
-df = pd.read_csv("Grilla.csv", dtype="category", sep=",", encoding="utf-8")
+df = pd.read_csv("titanic.csv", dtype="category", sep=",", encoding="utf-8")
 
-# for catindex, catname in enumerate(df.columns):
-#     print("{0:10s} = {1}".format(catname, df[catname].cat.categories))
+for catindex, catname in enumerate(df.columns):
+    print("{0:10s} = {1}".format(catname, df[catname].cat.categories))
 
 df_coded = pd.DataFrame()
 # print()
@@ -18,10 +18,11 @@ for catname in (df.columns):
     
 # print(df_coded)
 
-X = df_coded.iloc[:,1:5]
-y = df_coded.iloc[:,5]
+X = df_coded.iloc[:,1:3]
+y = df_coded.iloc[:,3]
 
 # print(df_coded)
+
 
 print(X)
 print()
@@ -50,5 +51,5 @@ for node in nodes:
         #mixed nodes get the default color
         else:
             node.set_fillcolor(colors[-1])
-graph.write_png('grilla_tree_color.png')
+graph.write_png('titanic.png')
 

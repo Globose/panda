@@ -1,0 +1,15 @@
+Nr,Age,Siblings,Survived
+0,Medium,1,yes
+1,High,1,yes
+2,Medium,0,yes
+3,High,0,yes
+4,High,0,no
+5,High,2,no
+6,Low,1,no
+7,Low,0,no
+8,High,1,no
+9,Low,1,yes
+10,Low,2,no
+11,Low,1,yes
+12,High,0,no
+13,High,1,yes
