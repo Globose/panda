@@ -5,7 +5,9 @@ from sklearn.inspection import DecisionBoundaryDisplay
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
+import sklearn.metrics
 from matplotlib.colors import ListedColormap
+import sklearn.preprocessing as skpre
 
 def load_csv(path):
     """Loads csv file"""
@@ -20,6 +22,69 @@ def knn(dataFrame):
     knn = KNeighborsClassifier(n_neighbors=3)
     knn.fit(X,y)
     
+    op = knn.predict(X)
+    acc = sklearn.metrics.accuracy_score(y, op)
+    
+    dataFrame_2 = load_csv("lab_2/2-titanic2attr.csv")
+    dataFrame_2 = dataFrame_2.dropna()
+    
+    X_2 = dataFrame_2.iloc[:,2:4]
+    y_2 = dataFrame_2.iloc[:,1]
+    
+    knn_2 = KNeighborsClassifier(n_neighbors=3)
+    knn_2.fit(X_2,y_2)
+    
+    op_2 = knn_2.predict(X_2)
+    acc_2 = sklearn.metrics.accuracy_score(y_2,op_2)
+    # print(acc_2)
+    # draw(dataFrame, X_2, y_2, knn)
+    
+
+    dataFrame_3 = load_csv("lab_2/3-titanic.csv")
+    dataFrame_3 = dataFrame_3.dropna()
+    
+    labels = ['Ticket', 'Sex', 'Embarked', 'Fare']
+    le = skpre.LabelEncoder()
+    for l in labels:
+        dataFrame_3[l] = le.fit_transform(dataFrame_3[l])
+
+    X_3 = dataFrame_3.iloc[:,2:10]
+    y_3 = dataFrame_3.iloc[:,1]
+    
+    print(X_3)
+    
+    knn_3 = KNeighborsClassifier(n_neighbors=3)
+    knn_3.fit(X_3,y_3)
+    
+    op_3 = knn_3.predict(X_3)
+    acc_3 = sklearn.metrics.accuracy_score(y_3, op_3)
+    
+    print(acc_3)
+    #draw(dataFrame_3, X_3, y_3, knn_3)
+    
+def upg2():
+    df = load_csv("lab_2/3-titanic.csv")
+    
+    labels = ['Ticket', 'Sex', 'Embarked', 'Fare']
+    le = skpre.LabelEncoder()
+    for l in labels:
+        df[l] = le.fit_transform(df[l])
+    
+    # print(df.shape)
+    # print(df.dtypes)
+    print(df.describe())
+    # print(df['Sex'].value_counts())
+    
+    df_fem  = df[df['Sex']==0]
+    df_male  = df[df['Sex']==1]
+    
+    print(df_fem['Survived'].value_counts())
+    print(df_male['Survived'].value_counts())
+    
+    print(df_fem.describe())
+    print(df_male.describe())
+    
+def draw(dataFrame, X, y, knn):
     cmap_light = ListedColormap(["orange", "cyan"])
     cmap_bold = ["darkorange", "c"]
 
@@ -32,13 +97,6 @@ def knn(dataFrame):
         ylabel=dataFrame.columns[3],
         shading="auto"
     )
-
-    d = {'Age':[2,2], 'SibSp':[1,0]}
-    df = pd.DataFrame(data=d)
-    op = knn.predict(df)
-    print(op)
-
-    # print(dataFrame.columns[1])
     
     sns.scatterplot(
         x=X.iloc[:, 0],
@@ -53,11 +111,13 @@ def knn(dataFrame):
         "Classification"
     )
     plt.show()
-  
+
 def main():
     """Main function"""
-    dataFrame = load_csv("lab_2/1-titanic-small.csv")
-    knn(dataFrame)
+    #dataFrame = load_csv("lab_2/1-titanic-small.csv")
+    #knn(dataFrame)
+    upg2()
+
 
 if __name__ == '__main__':
     main()

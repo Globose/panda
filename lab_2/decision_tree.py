@@ -12,8 +12,15 @@ def load_csv(path):
 
 def create_decision_tree(dataFrame):
     """Creates a desicion tree"""
-    X = dataFrame.iloc[:,1:3]
-    y = dataFrame.iloc[:,3]
+    dataFrame = dataFrame.dropna()
+    
+    labels = ['Ticket', 'Sex', 'Embarked', 'Fare']
+    le = skpre.LabelEncoder()
+    for l in labels:
+        dataFrame_3[l] = le.fit_transform(dataFrame_3[l])
+
+    X = dataFrame.iloc[:,2:10]
+    y = dataFrame.iloc[:,1]
     dtree = DecisionTreeClassifier(criterion='entropy', random_state=0)
     dtree.fit(X,y)
     generate_color_image(dtree, X)
@@ -45,7 +52,7 @@ def generate_color_image(dtree, X):
 
 def main():
     """Main function"""
-    dataFrame = load_csv("lab_2/1-titanic-small.csv")
+    dataFrame = load_csv("lab_2/3-titanic.csv")
     create_decision_tree(dataFrame)
 
 if __name__ == '__main__':
