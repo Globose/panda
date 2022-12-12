@@ -1,37 +1,6 @@
-import pandas as pd
 import numpy as np
-from sklearn.tree import DecisionTreeClassifier
-from graphviz import Source
 from sklearn.tree import export_graphviz
 import pydotplus
-
-def load_csv(path):
-    """Loads csv file"""
-    dataFrame = pd.read_csv(path, sep=",", encoding="utf-8")
-    return dataFrame
-
-def create_decision_tree(dataFrame):
-    """Creates a desicion tree"""
-    dataFrame = dataFrame.dropna()
-    
-    labels = ['Ticket', 'Sex', 'Embarked', 'Fare']
-    le = skpre.LabelEncoder()
-    for l in labels:
-        dataFrame_3[l] = le.fit_transform(dataFrame_3[l])
-
-    X = dataFrame.iloc[:,2:10]
-    y = dataFrame.iloc[:,1]
-    dtree = DecisionTreeClassifier(criterion='entropy', random_state=0)
-    dtree.fit(X,y)
-    generate_color_image(dtree, X)
-
-
-def generate_image(dtree, X):
-    """Generates an image of a decision tree"""
-    graph = Source(export_graphviz(dtree, out_file=None, feature_names=X.columns))
-    graph.format = 'png'
-    graph.render('grilla_tree', view=True)
-
 
 def generate_color_image(dtree, X):
     """Generates a colored image of a decision tree"""
@@ -48,16 +17,6 @@ def generate_color_image(dtree, X):
             else:
                 node.set_fillcolor(colors[-1])
     graph.write_png('lab_2/titanic.png')
-
-
-def main():
-    """Main function"""
-    dataFrame = load_csv("lab_2/3-titanic.csv")
-    create_decision_tree(dataFrame)
-
-if __name__ == '__main__':
-    main()
-
 
 
 
