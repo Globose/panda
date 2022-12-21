@@ -5,7 +5,7 @@ from data import FILES, load_csv, encode_labels, normalize
 
 def classification():
     df = encode_labels(load_csv(FILES[2]).dropna())
-    # df = normalize(df)
+    df = normalize(df)
     
     X = df.iloc[:,[2,3,4,5,6,7,8,9]]
     y = df.iloc[:,1]
