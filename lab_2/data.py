@@ -1,7 +1,7 @@
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder, MinMaxScaler
 
-FILES = ['lab_2/1-titanic-small.csv', 'lab_2/2-titanic2attr.csv', 'lab_2/3-titanic.csv', 'lab_2/4-test.csv']
+FILES = ['lab_2/1-titanic-small.csv', 'lab_2/2-titanic2attr.csv', 'lab_2/3-titanic.csv']
 
 
 def load_csv(path):

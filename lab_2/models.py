@@ -2,7 +2,7 @@ import pydotplus
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-from sklearn.metrics import accuracy_score, precision_score, f1_score, recall_score, roc_auc_score
+from sklearn.metrics import accuracy_score, precision_score, f1_score, recall_score
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.inspection import DecisionBoundaryDisplay
 from sklearn.tree import export_graphviz
