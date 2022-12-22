@@ -2,7 +2,7 @@ import pydotplus
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-from sklearn.metrics import accuracy_score, precision_score, f1_score, recall_score
+from sklearn.metrics import accuracy_score, precision_score, f1_score, recall_score, roc_auc_score
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.inspection import DecisionBoundaryDisplay
 from sklearn.tree import export_graphviz
@@ -100,7 +100,7 @@ def knn_from_file(file, cols_x, col_y, norm=False, enc_lbl = False, plot=False):
 def knn_titanic():
     """K nearest neighbour"""
     print(knn_from_file(FILES[0], [2,3], 1, plot=True, norm=False)[1])
-    print(knn_from_file(FILES[1], [2,3], 1, plot=True, norm=True)[1])
+    print(knn_from_file(FILES[1], [2,3], 1, plot=True, norm=False)[1])
     print(knn_from_file(FILES[2], [2,3,4,5,6,7,8,9], 1, enc_lbl=True)[1])
 
 
